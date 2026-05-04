@@ -17,6 +17,21 @@ git clone [https://github.com/tu-usuario/AuditorDeSistemas.git](https://github.c
 pip install -r requirements.txt
 ```
 
+##🤖 Configuración de Telegram (Bot Father)
+
+Para que el script pueda enviarte mensajes, necesitas crear un bot y obtener tu ID de usuario:
+
+    Crear el Bot:
+        Busca a @BotFather en Telegram.
+        Escribe /newbot y sigue las instrucciones para darle un nombre.
+        Al finalizar, te dará el TELEGRAM_TOKEN (guárdalo, es tu llave).
+    Obtener tu Chat ID:
+        Para saber a qué chat debe escribir el bot, busca el bot @userinfobot en Telegram y envíale cualquier mensaje.
+        Te responderá con un número (ej: 123456789). Ese es tu TELEGRAM_CHAT_ID.
+    Activar el Bot:
+        Busca tu nuevo bot por el nombre que le pusiste y dale a /start. Si no le escribes primero, el bot no tendrá permiso para enviarte mensajes.
+
+
 ## 2. Configurar Variables de Entorno
 
 Crea un archivo .env en la raíz del proyecto (este archivo está protegido por .gitignore):
