@@ -1,23 +1,22 @@
 # 📊 Auditor de Sistemas Inteligente (Gemini AI)
 
-Este proyecto es un bot de auditoría automatizada que analiza la salud de servidores Linux (Ubuntu/Debian) y reporta el estado de versiones de software (PHP, MariaDB, OS) y alertas de seguridad SSH mediante la IA de Google Gemini.
+Este proyecto es un bot de auditoría automatizada que analiza la salud de servidores Linux y reporta el estado de versiones de software (PHP, MariaDB, OS) y seguridad SSH mediante la IA de Google Gemini.
 
 ## 🚀 Características
-- **Auditoría de Software:** Detecta versiones instaladas y evalúa su ciclo de vida (EOL).
-- **Seguridad en Tiempo Real:** Analiza `/var/log/auth.log` en busca de ataques de fuerza bruta.
+- **Auditoría de Software:** Detecta versiones y evalúa su ciclo de vida (EOL).
+- **Seguridad en Tiempo Real:** Analiza intentos de fuerza bruta en SSH.
 - **Reportes automáticos:** Envía un resumen formateado a Telegram.
-- **Alertas Críticas:** Clasifica problemas en ✅ OK, ⚠️ Advertencia y 🔴 Crítico.
 
 ## 🛠️ Instalación en Ubuntu 22.04+
 
 ### 1. Clonar y Preparar el Entorno
 ```bash
 cd ~/scripts
-git clone [https://github.com/tu-usuario/AuditorDeSistemas.git](https://github.com/tu-usuario/AuditorDeSistemas.git) .
+git clone [https://github.com/kapi2454/AuditorDeSistemas.git](https://github.com/kapi2454/AuditorDeSistemas.git) .
 pip install -r requirements.txt
 ```
 
-##🤖 Configuración de Telegram (Bot Father)
+## 2. 🤖 Configuración de Telegram (Bot Father)
 
 Para que el script pueda enviarte mensajes, necesitas crear un bot y obtener tu ID de usuario:
 
@@ -32,7 +31,7 @@ Para que el script pueda enviarte mensajes, necesitas crear un bot y obtener tu 
         Busca tu nuevo bot por el nombre que le pusiste y dale a /start. Si no le escribes primero, el bot no tendrá permiso para enviarte mensajes.
 
 
-## 2. Configurar Variables de Entorno
+## 3. Configurar Variables de Entorno
 
 Crea un archivo .env en la raíz del proyecto (este archivo está protegido por .gitignore):
 Ini, TOML
@@ -43,7 +42,7 @@ TELEGRAM_TOKEN=tu_token_de_bot
 TELEGRAM_CHAT_ID=tu_id_de_chat
 ```
 
-## 3. Configurar Permisos de Seguridad
+## 4. Configurar Permisos de Seguridad
 
 Para que el script pueda leer los logs de SSH sin necesidad de usar sudo, añade tu usuario al grupo adm:
 
@@ -53,7 +52,7 @@ sudo usermod -aG adm $USER
 
 # IMPORTANTE: Cierra y abre sesión para que los cambios surtan efecto.
 
-4. Protección Perimetral (Recomendado)
+## 5. Protección Perimetral (Recomendado)
 
 Para mitigar los ataques que el bot detecte, instala y configura Fail2Ban:
 
