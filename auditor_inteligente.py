@@ -31,9 +31,13 @@ def enviar_telegram(texto):
 def get_ssh_attempts():
     log_path = "/var/log/auth.log"
     if os.path.exists(log_path):
-        ssh_log = subprocess.getoutput(f"sudo grep 'Failed password' {log_path} | tail -n 5")
+        ssh_log = subprocess.getoutput(f"grep 'Failed password' {log_path} | tail -n 5")
     else:
-        ssh_log = "Archivo de logs no accesible."
+        ssh_log = subprocess.getoutput(
+            "journalctl _SYSTEMD_UNIT=ssh.service --since '24 hours ago' | grep 'Failed password' | tail -n 5"
+        )
+    if not ssh_log.strip():
+        ssh_log = "Sin intentos fallidos recientes."
     return ssh_log
 
 def ejecutar_auditoria():
