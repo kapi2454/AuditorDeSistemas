@@ -19,7 +19,7 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 def get_system_info():
     os_v = subprocess.getoutput("lsb_release -ds")
     php_v = subprocess.getoutput("php -v | head -n 1")
-    db_v = subprocess.getoutput("mariadb --version")
+    db_v = subprocess.getoutput("mariadb --version 2>/dev/null || mysql --version 2>/dev/null || echo 'No detectada'")
     return f"SO: {os_v} | PHP: {php_v} | DB: {db_v}"
 
 def enviar_telegram(texto):
