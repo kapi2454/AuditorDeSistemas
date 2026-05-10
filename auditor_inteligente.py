@@ -17,10 +17,11 @@ SERVER_NAME = os.getenv("SERVER_NAME", socket.gethostname())
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 def get_system_info():
-    os_v = subprocess.getoutput("lsb_release -ds 2>/dev/null || cat /etc/almalinux-release 2>/dev/null || cat /etc/redhat-release 2>/dev/null || grep PRETTY_NAME /etc/os-release 2>/dev/null | cut -d= -f2 | tr -d '\"'")
+    os_v = subprocess.getoutput("lsb_release -ds 2>/dev/null || ...")
     php_v = subprocess.getoutput("php -v | head -n 1")
     db_v = subprocess.getoutput("mariadb --version 2>/dev/null || mysql --version 2>/dev/null || echo 'No detectada'")
-    return f"SO: {os_v} | PHP: {php_v} | DB: {db_v}"
+    nc_v = subprocess.getoutput("cat /var/www/html/version.php 2>/dev/null | grep OC_VersionString | cut -d\\' -f2 || echo 'No instalado'")
+    return f"SO: {os_v} | PHP: {php_v} | DB: {db_v} | Nextcloud: {nc_v}"
 
 def enviar_telegram(texto):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
