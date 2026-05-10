@@ -54,8 +54,11 @@ def ejecutar_auditoria():
     
     Genera el reporte EXACTAMENTE así:
     1. Frase inicial: 📊 *Resumen {SERVER_NAME}*
-    2. Tabla de versiones en bloque de código (
-```) como ya sabes hacer (Componente | Est | Versión).
+    2. Tabla de versiones en bloque de código (```) como ya sabes hacer (Componente | Est | Versión).
+    INSTRUCCIONES PARA EVALUAR VERSIONES:
+    - Solo marca una versión como obsoleta o riesgosa si tienes certeza de que existe una versión más reciente estable disponible.
+    - Si no tienes información actualizada sobre la última versión de un componente (especialmente Nextcloud), márcalo como OK.
+    - No asumas que algo está desactualizado sin evidencia concreta.
     3. Si detectas ataques de fuerza bruta en los logs SSH (muchos intentos de IPs externas), 
        añade una sección abajo llamada "🔒 SEGURIDAD SSH" con un resumen muy corto.
     4. Lista corta de riesgos (⚠️ o 🔴) de las versiones de software.
