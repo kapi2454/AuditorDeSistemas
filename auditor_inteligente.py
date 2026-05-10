@@ -40,7 +40,7 @@ def get_ssh_attempts():
 
 def ejecutar_auditoria():
     info = get_system_info()
-    ssh_info = get_ssh_attempts() # <--- Nueva información capturada
+    ssh_log = subprocess.getoutput(f"sudo grep 'Failed password' {log_path} | tail -n 5")
     
     prompt = f"""
     Analiza la seguridad del servidor {SERVER_NAME} a fecha {datetime.now().strftime("%B %Y")}.
