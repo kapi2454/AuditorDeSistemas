@@ -1,8 +1,10 @@
 import os
+import socket
 import subprocess
 import requests
 from google import genai
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Cargamos las variables del archivo .env
 load_dotenv()
@@ -10,6 +12,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+SERVER_NAME = os.getenv("SERVER_NAME", socket.gethostname())
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -40,14 +43,15 @@ def ejecutar_auditoria():
     ssh_info = get_ssh_attempts() # <--- Nueva información capturada
     
     prompt = f"""
-    Analiza la seguridad de este servidor hoy mayo 2026.
+    Analiza la seguridad del servidor {SERVER_NAME} a fecha {datetime.now().strftime("%B %Y")}.
+    NOMBRE DEL SERVIDOR: {SERVER_NAME}
     
     DATOS DEL SISTEMA:
     1. Versiones: {info}
     2. Intentos SSH fallidos: {ssh_info}
     
     Genera el reporte EXACTAMENTE así:
-    1. Frase inicial: 📊 *Resumen Alamos*
+    1. Frase inicial: 📊 *Resumen {SERVER_NAME}*
     2. Tabla de versiones en bloque de código (
 ```) como ya sabes hacer (Componente | Est | Versión).
     3. Si detectas ataques de fuerza bruta en los logs SSH (muchos intentos de IPs externas), 
