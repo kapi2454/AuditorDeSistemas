@@ -38,7 +38,7 @@ def get_ssh_attempts():
 
 def ejecutar_auditoria():
     info = get_system_info()
-    
+    ssh_info = get_ssh_attempts()
     prompt = f"""
     Analiza la seguridad del servidor {SERVER_NAME} a fecha {datetime.now().strftime("%B %Y")}.
     NOMBRE DEL SERVIDOR: {SERVER_NAME}
